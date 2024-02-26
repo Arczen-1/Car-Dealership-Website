@@ -29,7 +29,6 @@
         </form>
         <div class="divider">Or</div>
         <div class="social-login">
-            <!-- Social login buttons -->
             <button>Sign up with Google</button>
             <button>Sign up with Facebook</button>
             <button>Sign up with Twitter</button>
