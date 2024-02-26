@@ -29,6 +29,10 @@
         </form>
         <div class="divider">Or</div>
         <div class="social-login">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             <button>Sign up with Google</button>
             <button>Sign up with Facebook</button>
             <button>Sign up with Twitter</button>
@@ -38,19 +42,18 @@
 </body>
 </html>
 <?php
-// Placeholder for login verification logic
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve email and password from POST request
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Here you should retrieve and verify the credentials from your database
-    // For this placeholder, we will just check if the credentials match a hardcoded example
+
     if ($email === "user@example.com" && $password === "password123") {
-        // If the credentials are correct, redirect or display a success message
+
         echo "Login successful. Welcome, " . htmlspecialchars($email) . "!";
     } else {
-        // If the credentials are incorrect, display an error message
+
         echo "Login failed: Invalid email or password.";
     }
 }
