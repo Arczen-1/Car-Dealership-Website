@@ -29,10 +29,7 @@
         </form>
         <div class="divider">Or</div>
         <div class="social-login">
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
             <button>Sign up with Google</button>
             <button>Sign up with Facebook</button>
             <button>Sign up with Twitter</button>

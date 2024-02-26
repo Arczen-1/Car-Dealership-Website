@@ -16,7 +16,7 @@
                 <li><a href="#models">Models</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#Account">Account</a></li>
-                <li><a href="#Login">Login</a></li>
+                <li><a href="signup.php">Login</a></li>
             </ul>
             <div class="Button">
                 <button id="book">Book Now</button>
