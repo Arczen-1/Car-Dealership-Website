@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Car Dealership</title>
+    <link rel="icon" type="image/png" href="Logo.webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
