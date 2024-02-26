@@ -45,8 +45,17 @@
         </div>
     </header>
 
-    <div class="car-container">
-        <div class="cars">
+    <div>
+
+    </div>
+
+    <div class="car-container" style="margin: auto">
+        <div class="cars" style="margin: auto">
+            <img src="car1.png">
+            <img src="car2.png"style="height: 95px">
+            <img src="car3.jpg"style="height: 150px">
+            <img src="car4.jpeg">
+            <img src="car5.png" >
         </div>
     </div>
 

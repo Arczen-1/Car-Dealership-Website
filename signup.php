@@ -16,7 +16,7 @@
             <img src="Logo.webp" alt="Car Dealership Logo">
         </div>
         <h1> Signup to get started </h1>
-        <form action="login.php" method="post">
+        <form action="index.php" method="post">
             <span>Email</span>
             <input type="email" name="email" placeholder="Email" required>
             <span>Password</span>
@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($email === "user@example.com" && $password === "password123") {
 
-        echo "Login successful. Welcome, " . htmlspecialchars($email) . "!";
+        echo '<script> alert("Login successful. Welcome, ") . htmlspecialchars($email) . "!"';
+
     } else {
 
         echo "Login failed: Invalid email or password.";

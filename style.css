@@ -146,3 +146,14 @@ body, h1, ul, li, a {
         padding: 10px 0;
     }
 }
+
+.cars img {
+    height: 100px;
+    padding: 25px;
+    
+  }
+
+  .car-container{
+    display: flex;
+    align-items: center;
+  }
