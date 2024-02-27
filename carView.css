@@ -83,8 +83,7 @@ h1 {
     flex-direction: row;
 }
 .car img{
-    width: 670px;
-    height: 300px;
+    height: 250px;
     margin-left: -130px;
 }
 .carInfo {
