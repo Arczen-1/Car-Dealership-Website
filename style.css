@@ -157,7 +157,3 @@ body, h1, ul, li, a {
     display: flex;
     align-items: center;
   }
-
-  .test{
-    font-size: 1000px;
-  }
