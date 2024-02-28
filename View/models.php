@@ -2,13 +2,13 @@
     <head>
         <meta charset="utf-8" />
         <title>Models</title>
-        <link rel="icon" type="image/png" href="Logo.webp">
-        <link href="models.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
+        <link href="../Public/style/models.css" rel="stylesheet" />
     </head>
     <body>
         <nav class="navbar">
             <div class="logo">
-                <img src="Logo.webp" alt="Car Dealership Logo">
+                <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
             </div>
             <ul class="nav-links">
                 <li><a href="#Home">Home</a></li>
@@ -37,23 +37,23 @@
             <div class="modelsContainer">
                 <div class="Models">
                     <div class="imgAndCarName">
-                        <img src="car1.png">
+                        <img src="../Public/img/car1.png">
                         <p>Rolls Royce</p>
                     </div>
                     <div class="imgAndCarName">
-                        <img src="car2.png"style="height: 95px">
+                        <img src="../Public/img/car2.png"style="height: 95px">
                         <p>Rolls Royce</p>
                     </div>
                     <div class="imgAndCarName">
-                        <img src="car3.jpg"style="height: 150px">
+                        <img src="../Public/img/car3.jpg"style="height: 150px">
                         <p>Rolls Royce</p>
                     </div>
                     <div class="imgAndCarName">
-                        <img src="car4.jpeg">
+                        <img src="../Public/img/car4.jpeg">
                         <p>Mercedes Benz</p>
                     </div>
                     <div class="imgAndCarName">
-                        <img src="car5.png">
+                        <img src="../Public/img/car5.png">
                         <p>Lamborghini</p>
                     </div>
                 </div>

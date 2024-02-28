@@ -2,14 +2,14 @@
     <head>
         <meta charset="utf-8" />
         <title>Car</title>
-        <link rel="icon" type="image/png" href="Logo.webp">
-        <link href="carView.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
+        <link href="../Public/style/carView.css" rel="stylesheet" />
     </head>
 
     <body>
         <nav class="navbar">
             <div class="logo">
-                <img src="Logo.webp" alt="Car Dealership Logo">
+                <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
             </div>
             <ul class="nav-links">
                 <li><a href="#Home">Home</a></li>
@@ -26,7 +26,7 @@
         <div class="wrap">
             <div class="container">
                 <div class="car">
-                    <img src="car5.png" alt="Car" />
+                    <img src="../Public/img/car5.png" alt="Car" />
                 </div>
                 <div class="carInfo">
                     <h1>Lamborghini Urus</h1>
