@@ -90,6 +90,20 @@ h1 {
     margin-left: 50px;
     margin-top: 10px;
 }
+.detailsAndButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.bookButton {
+    background-color: black;
+    color: white;
+    height: 35px;
+    width: 150px;
+    border: 0px;
+    font-family: caros light;
+}
 .carSpecsContainer {
     display: flex;
     flex-direction: column;
