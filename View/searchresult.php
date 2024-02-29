@@ -5,7 +5,7 @@ include '../Controller/connect.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Dealership</title>
+    <title>Search Results</title>
     <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
     <link rel="stylesheet" href="../Public/style/style.css">
 </head>
@@ -33,14 +33,13 @@ include '../Controller/connect.php';
             $sql="SELECT * FROM `tblproducts` WHERE car='$search'";
             $result=mysqli_query($conn,$sql);
 
-            if($result){
+            if(mysqli_num_rows($result) > 0){
             ?>
              <body>
                 <div class="Models" style="padding: 75px;">
                     <h1 style="padding: 50px;">Our Models</h1>
                     <div class="cars" style="display: flex; padding-right: 25px; ">
                         <?php
-                        // Loop through the results and display matching models
                         while($row = mysqli_fetch_assoc($result)){
                             ?>
                             <div class="catalog" style="height: 500px; width: 400px; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
@@ -54,13 +53,16 @@ include '../Controller/connect.php';
                         ?>
                     </div>
                 </div>
-            <?php
-        } else {
-            ?>
-                <h1> <b> No Results Found <b> </h1>
-            </body>
-            </html>
-            <?php
+                <?php
+            } else {
+                ?>
+                <div class="Models" style="padding: 75px;">
+                    <h1 style="padding: 50px; color: Red">No Results Found</h1>
+                </div>
+                <?php
+            }
         }
-    }
-    ?>
+        ?>
+    </header>
+</body>
+</html>

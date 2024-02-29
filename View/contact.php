@@ -16,7 +16,7 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="models.php">Models</a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <li><a href="#Account">Account</a></li>
+                <li><a href="account.php">Account</a></li>
                 <li><a href="signup.php">Login</a></li>
             </ul>
             <div class="Button">
