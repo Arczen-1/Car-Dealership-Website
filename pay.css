@@ -1,0 +1,109 @@
+body, h1, ul, li, a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    color: #333;
+    font-family: caros light;
+}
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links li {
+        padding: 10px 0;
+    }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.logo img {
+    height: 50px;
+}
+.nav-links {
+    display: flex;
+}
+.nav-links li {
+    padding: 0 20px;
+}
+.nav-links li a {
+    font-size: 16px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+.nav-links li a:hover {
+    color: #007bff;
+}
+#book{
+    background-color: black;
+    color: white;
+    height: 35px;
+    width: 150%;
+    border-radius: 25px;
+    border: 0px;
+    font-family: caros light;
+}
+#book:hover{
+    background-color: blue;
+}
+
+.spacer.v20 {
+    height: 20px;
+}
+.spacer.v40 {
+    height: 40px;
+}
+.spacer.v80 {
+    height: 80px;
+}
+h1 {
+    font-size: 40px;
+}
+.wrap {
+    margin: 0 auto;
+    padding: 0;
+    width: 1000px;
+}
+.wrap img {
+    height: 250px;
+    margin-left: -130px;
+}
+.carName {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.car-price {
+    font-size: 18px;
+    margin-top: 10px;
+}
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.payment-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.payment-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+.payment-form input[type="submit"]:hover {
+    background-color: #45a049;
+}

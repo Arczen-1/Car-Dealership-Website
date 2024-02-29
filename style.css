@@ -157,3 +157,20 @@ body, h1, ul, li, a {
     display: flex;
     align-items: center;
   }
+
+  .test {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    background-color: black;
+    color: white;
+    margin: 10px;    
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
