@@ -1,6 +1,4 @@
-<?php
-include '../Controller/connect.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +14,10 @@ include '../Controller/connect.php';
                 <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
             </div>
             <ul class="nav-links">
-                <li><a href="#Home">Home</a></li>
-                <li><a href="#models">Models</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#Account">Account</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="models.php">Models</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="account.php">Account</a></li>
                 <li><a href="signup.php">Login</a></li>
             </ul>
             <div class="Button">
@@ -29,7 +27,7 @@ include '../Controller/connect.php';
         </nav>
         <div class="header-content">
 
-            <form class="searchbar" method="post">
+            <form class="searchbar" action="searchresult.php" method="post">
                 <div class="ser">
                     <div class="input-group">
                         <span class="input-title" id="brand">Car, Model, or Brand</span>
@@ -46,22 +44,6 @@ include '../Controller/connect.php';
                     <button id="search" name="search"> Search </button>
                 </div>
             </form>
-            <?php
-            if(isset($_POST['search'])){
-                $search = $_POST['brand'];
-                $sql="SELECT * FROM `tblproducts` WHERE car='$search'";
-                $result=mysqli_query($conn,$sql);
-
-                if($result){
-                    echo '<script> console.log("EZ") </script>';
-                    echo "ez";
-                }
-                else{
-                    echo '<script> console.log("BOBO") </script>';
-                    echo "bobo";
-                }
-            }
-            ?>
         </div>
     </header>
 
@@ -77,25 +59,25 @@ include '../Controller/connect.php';
                 <img src="../Public/img/car5.png" style="display: flex; justify-content: center;">
                 <strong style="font-size: 24px; font-weight: 700;">Lamborghini Urus</strong>
                 <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;">More</button>
+                <button style="height: 30px; width: 75px;"><a href="carView.php">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car1.png" style="display: flex; justify-content: center;">
-                <strong style="font-size: 24px; font-weight: 700;">Lamborghini Urus</strong>
+                <strong style="font-size: 24px; font-weight: 700;">Rolls Royce</strong>
                 <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;">More</button>
+                <button style="height: 30px; width: 75px;"><a href="carView.php">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car2.png" style="display: flex; justify-content: center;">
-                <strong style="font-size: 24px; font-weight: 700;">Lamborghini Urus</strong>
+                <strong style="font-size: 24px; font-weight: 700;">Rolls Royce</strong>
                 <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;">More</button>
+                <button style="height: 30px; width: 75px;"><a href="carView.php">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car4.jpeg" style="display: flex; justify-content: center;">
-                <strong style="font-size: 24px; font-weight: 700;">Lamborghini Urus</strong>
+                <strong style="font-size: 24px; font-weight: 700;">Rolls Royce</strong>
                 <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;">More</button>
+                <button style="height: 30px; width: 75px;"><a href="carView.php">More</a></button>
             </div>
             
         </div>
