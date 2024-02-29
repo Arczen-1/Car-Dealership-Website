@@ -40,12 +40,13 @@ include '../Controller/connect.php';
                     <h1 style="padding: 50px;">Our Models</h1>
                     <div class="cars" style="display: flex; padding-right: 25px; ">
                         <?php
+                        // Loop through the results and display matching models
                         while($row = mysqli_fetch_assoc($result)){
                             ?>
                             <div class="catalog" style="height: 500px; width: 400px; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
-                                <img src="../Public/img/car5.png" style="display: flex; justify-content: center;">
+                                <img src="../Public/img/<?php echo $row['image_path']; ?>" style="display: flex; justify-content: center;">
                                 <strong style="font-size: 24px; font-weight: 700;"><?php echo $row['car']; ?></strong>
-                                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;"><?php echo 'PHP 200,000/month'; ?></strong>
+                                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;"><?php echo 'PHP '.$row['price'].'/month'; ?></strong>
                                 <button style="height: 30px; width: 75px;"><a href="carView.php">More</a></button>
                             </div>
                             <?php
