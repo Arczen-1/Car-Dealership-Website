@@ -24,6 +24,13 @@
                 <button id="book">Book Now</button>
                 
             </div>
+            <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('book').addEventListener('click', function() {
+            window.location.href = 'checkout.php';
+        });
+    });
+</script>
         </nav>
         <div class="header-content">
 
