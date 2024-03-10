@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: white;
+}
+
+.container {
+    max-width: 600px;
+    margin: 30px auto; /* Increased margin for space around the boxes */
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between the two boxes */
+}
+
+.checkout-summary {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.checkout-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.checkout-summary th, .checkout-summary td {
+    text-align: left;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.checkout-summary th {
+    background-color: #eaeaea;
+}
+
+.checkout-summary .total-row {
+    font-weight: bold;
+    text-align: right;
+}
+
+.checkout-summary .total-row td {
+    padding-top: 10px;
+}
+
+.billing-address {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.billing-address h2 {
+    margin-top: 0;
+    padding-bottom: 10px; /* Add some padding below the header */
+    border-bottom: 1px solid #eee; /* Separator line below the header */
+}
+
+.billing-address form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Spacing between form fields */
+}
+
+.billing-address form label {
+    margin-bottom: 5px; /* Spacing below the label */
+}
+
+.billing-address form input[type="email"],
+.billing-address form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.billing-address form .submit-button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #005f6b;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px; /* Extra margin above the submit button */
+}
+
+.billing-address form .submit-button:hover {
+    background-color: #003f49;
+}
