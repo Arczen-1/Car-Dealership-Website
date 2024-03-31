@@ -77,12 +77,65 @@ body {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #005f6b;
+    background-color: #333;
     color: white;
     cursor: pointer;
     margin-top: 10px; /* Extra margin above the submit button */
 }
 
 .billing-address form .submit-button:hover {
-    background-color: #003f49;
+    background-color: #272727;
+}
+.date > label{
+    margin-right: 10px;
+}
+.date > input{
+    margin-right: 10px;
+}
+.date > select{
+    margin-right: 10px;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.footContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.theFootLogo img{
+    height: 55px;
+    margin-left: 20px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+.footTitle{
+    margin-left: 20px;
+}
+.about{
+    text-align: left;
+    margin-left: 20px;
+}
+.right{
+    margin-top: 60px;
+    margin-right: 100px;
+}
+.mid{
+    margin-top: 60px;
+    margin-right: 300px;
 }

@@ -1,18 +1,18 @@
 <?php
 include '../Controller/connect.php';
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Dealership</title>
+    <title>Inventory</title>
     <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
-    <link rel="stylesheet" href="../Public/style/acc.css">
+    <link rel="stylesheet" href="../Public/style/dash.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
+    
             <div class="logo">
                 <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
             </div>
@@ -20,8 +20,9 @@ session_start();
                 <li><a href="index.php">Home</a></li>
                 <li><a href="models.php">Models</a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <li><a href="#Account">Account</a></li>
+                <li><a href="account.php">Account</a></li>
                 <?php
+                session_start();
                 if (isset($_SESSION['email'])) {
                     echo '<li><a href="logout.php">Logout</a></li>';
                 } else {
@@ -29,26 +30,29 @@ session_start();
                 }
                 ?>
             </ul>
-            <div class="Button">
-                <button id="book">Book Now</button>
-                
-            </div>
+            <h1> Admin Dashboard </h1>
         </nav>
     </header>
+        <h1 class="dashboard"> Inventory </h1>
+        <div class="control">
+          <button> INVENTORY 
+            <div> Total: 0 </div>
+          </button>
+          <button> USERS 
+          <div> Total: 0 </div>
+          </button>
+          <button> SALES 
+          <div> Total: 0 </div>
+          </button>
+          <button> RESERVATIONS 
+          <div> Total: 0 </div>
+          </button>
+          <button> INQUIRIES 
+          <div> Total: 0 </div>
+          </button>
+        </div>
 
-    <h1 class="account" >Account Settings</h1>
-    <form class="formacc" method="post">
-        <label for="new_email">New Email:</label>
-        <input type="email" id="new_email" name="new_email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" required>
-
-        <br>
-        <br>
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-        <br>
-        <button type="submit" name="update">Save Changes</button>
-    </form>
-    <footer>
+        <footer>
     <div class="footContent">
         <div class="left">
             <div class="row">
@@ -77,29 +81,6 @@ session_start();
                 <p>Twitter</p>
         </div>
     </footer>
+        
 </body>
-
-<?php
-
-if (!isset($_SESSION['email'])) {
-    header("Location: signup.php");
-    exit(); 
-}
-
-$email = $_SESSION['email'];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
-    $new_email = $_POST['new_email'];
-    $new_password = $_POST['new_password'];
-
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-    $sql = "UPDATE `tblaccount` SET email = '$new_email', password = '$hashed_password' WHERE email = '$email'";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-        echo '<script>alert("Account updated successfully.");</script>';
-    } else {
-        echo '<script>alert("Failed to update account. Please try again.");</script>';
-    }
-}
-?>
+        

@@ -1,3 +1,6 @@
+<?php
+include '../Controller/connect.php';
+?>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -7,6 +10,35 @@
     </head>
 
     <body>
+        <?php
+        if(isset($_GET['id'])) {
+            $car_id = $_GET['id'];
+        $carQuery = mysqli_query($conn, "SELECT * FROM cars WHERE id = '$car_id'"); 
+
+            while($carResult = mysqli_fetch_assoc($carQuery)){
+                $carName = $carResult['carName'];
+                $carDescription = $carResult['carDescription'];
+                $carPrice = $carResult['carPrice'];
+                $carEngine = $carResult['carEngine'];
+                $carPower = $carResult['carPower'];
+                $carTopSpeed = $carResult['carTopSpeed'];
+                $mph = $carResult['mph'];
+                $consumption = $carResult['consumption'];
+                $emissions = $carResult['emissions'];
+                $length = $carResult['length'];
+                $width = $carResult['width'];
+                $height = $carResult['height'];
+                $tankCapacity = $carResult['tankCapacity'];
+                $maxPower = $carResult['maxPower'];
+                $maxTorque = $carResult['maxTorque'];
+                $maxEngineSpeed = $carResult['maxEngineSpeed'];
+                $topSpeed = $carResult['topSpeed'];
+                $acceleration = $carResult['acceleration'];
+                $braking = $carResult['braking'];
+                $img = $carResult['img'];
+                }
+        }
+        ?>
         <nav class="navbar">
             <div class="logo">
                 <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
@@ -16,7 +48,14 @@
                 <li><a href="models.php">Models</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
-                <li><a href="signup.php">Login</a></li>
+                <?php
+                session_start();
+                if (isset($_SESSION['email'])) {
+                    echo '<li><a href="logout.php">Logout</a></li>';
+                } else {
+                    echo '<li><a href="signup.php">Login</a></li>';
+                }
+                ?>
             </ul>
             <div class="Button">
                 <button id="book">Book Now</button>
@@ -26,12 +65,12 @@
         <div class="wrap">
             <div class="container">
                 <div class="car">
-                    <img src="../Public/img/car5.png" alt="Car" />
+                    <img src="<?php echo $img ?>" alt="Car" />
                 </div>
                 <div class="carInfo">
-                    <h1>Lamborghini Urus</h1>
+                    <div class="carName"><h1><?php echo $carName ?></h1></div>
                     <div class="carDescription">
-                        <p>The world's first Super Sport Utility Vehicle, the Lamborghini Urus combines the world's first Super Sport Utility Vehicle, the Lamborghini Urus combines the essence of a super sports car with the usefulness of an SUV. The Urus, which is powered by a 4.0-liter twin-turbo V8 engine from Lamborghini, is all about having a performance mindset that combines amazing vehicle capabilities with an enjoyable driving experience. This innovative expression of genuine Lamborghini DNA seamlessly combines design, performance, driving dynamics, and unrestrained emotion. A visionary realization of true Lamborghini DNA, the design, performance, driving dynamics, and unrestrained emotion flow together seamlessly.</p>
+                        <p><?php echo $carDescription ?></p>
                     </div>
                 </div>
             </div>
@@ -44,23 +83,23 @@
                 <div class="specs">
                     <div class="spec">
                         <h2>Price</h2>
-                        <p>$240,000</p>
+                        <div class="carPrice"><p><?php echo $carPrice ?></p></div>
                     </div>
                     <div class="spec">
                         <h2>Engine</h2>
-                        <p>4.0L V8</p>
+                        <div class="carEngine"><p><?php echo $carEngine ?></p></div>
                     </div>
                     <div class="spec">
                         <h2>Max. Power</h2>
-                        <p>666 CV</p>
+                        <div class="carPower"><p><?php echo $carPower ?></p></div>
                     </div>
                     <div class="spec">
                         <h2>Top Speed</h2>
-                        <p>305 km/h</p>
+                        <div class="carTopSpeed"><p><?php echo $carTopSpeed ?></p></div>
                     </div>
                     <div class="spec">
-                        <h2>0-62 mph</h2>
-                        <p>3.5 sec</p>
+                        <h2>mph</h2>
+                        <div class="mph"><p><?php echo $mph ?></p></div>
                     </div>
                 </div>
                 <div class="spacer v80"></div>
@@ -69,45 +108,100 @@
                     <div class="fullSpecsRowOne">
                         <div class="spec">
                             <h2>Consumption</h2>
-                            <p>Combined Consumption     14,1 l/100km (WLTP)</p>
-                            <p>Combined C02 Emissions   320 g/km (WPT)</p>
+                            <div class="row">
+                                <p>Consumption</p>
+                                <div class="consumption"><p><?php echo $consumption ?></p></div>
+                            </div>
+                            <div class="row">
+                                <p>Combined C02 Emissions</p>
+                                <div class="emissions"><p><?php echo $emissions ?></p></div>
+                            </div>
                         </div>
                         <div class="spec">
-                            <h2>Engine</h2>
-                            <p>Number of Cylinders      8</p>
-                            <p>Displacement             3,996 cm³ (243.85 cu in)</p>
-                            <p>Bore x Stroke            86 x 86 mm (3.39 X 3.39 in)</p>
-                            <p>Max. Power               666 CV (490 kW) @ 6,000 rpm</p>
-                            <p>Max. Torque              850 Nm (626.93 lb.-ft.) @ 2,300-4,500 rpm</p>
-                            <p>Max. Engine Speed        6,800 rpm</p>
-                        </div>
-                        <div class="spec">
-                            <h2>Performance</h2>
-                            <p>Top Speed                305 km/h (189.52 mph)</p>
-                            <p>0-100 km/h (0-62 mph)    3.5 s</p>
-                            <p>0-200 km/h (0-124 mph)   12.5 s</p>
-                            <p>Braking 100-0 km/h       33.7 m</p>
+                            <h2>Dimensions</h2>
+                            <div class="row">
+                                <p>Length</p>
+                                <div class="length"><p><?php echo $length ?></p></div>
+                            </div>
+                            <div class="row">
+                                <p>Width</p>
+                                <div class="width"><p><?php echo $width ?></p></div> 
+                            </div>
+                            <div class="row">
+                                <p>Height</p>
+                                <div class="height"><p><?php echo $height ?></p></div>
+                            </div>
+                            <div class="row">
+                                <p>Fuel Tank Capacity</p>
+                                <div class="tankCapacity"><p><?php echo $tankCapacity ?></p></div>
+                            </div>
                         </div>
                     </div>
                     <div class="fullSpecsRowTwo">
                         <div class="spec">
-                            <h2>Wheels</h2>
-                            <p>Front Rims               21" x 9.5J ET28</p>
-                            <p>Rear Rims                21" x 10.5J ET18</p>
-                            <p>Front Tires              PIRELLI P ZERO 285/45 ZR21</p>
-                            <p>Rear Tires               PIRELLI P ZERO 315/40 ZR21</p>
+                            <h2>Engine</h2>
+                            <div class="row">
+                                <p>Max. Power</p>
+                                <div class="maxPower"><p><?php echo $maxPower ?></p></div>
+                            </div>
+                            <div class="row">
+                                <p>Max. Torque</p>
+                                <div class="maxTorque"><p><?php echo $maxTorque ?></p></div>
+                            </div>
+                            <div class="row">
+                                <p>Max. Engine Speed</p>
+                                <div class="maxEngineSpeed"><p><?php echo $maxEngineSpeed ?></p></div>
+                            </div>
                         </div>
                         <div class="spec">
-                            <h2>Dimension</h2>
-                            <p>Curb Weight              2,197 kg</p>
-                            <p>Length                   5,112 mm</p>
-                            <p>Width                    2,016 mm</p>
-                            <p>Height                   1,638 mm</p>
-                            <p>Wheelbase                3,003 mm</p>
-                            <p>Fuel Tank Capacity       75 and 85 l (19.81 or 22.45 gal)</p>
+                            <h2>Performance</h2>
+                            <div class="row">
+                                <p>Top Speed</p>
+                                <div class="topSpeed"><p><?php echo $topSpeed ?></p></div>
+                            </div>
+                            <div class="row">
+                                <p>acceleration</p>
+                                <div class="acceleration"><p><?php echo $acceleration ?></p></div>
+                            </div>
+                            
+                            <div class="row">
+                                <p>Braking</p>
+                                <div class="braking"><p><?php echo $braking ?></p></div>
+                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer>
+    <div class="footContent">
+        <div class="left">
+            <div class="row">
+                <div class="theFootLogo">
+                    <img src="../Public/img/logoWhite.png" alt="Car Dealership Logo">
+                </div>
+                <div class="footTitle">
+                    <h3>Car Dealership</h3>
+                </div>
+            </div>
+            <div class="about">
+                <h3>About Us</h3>
+                <p>Welcome to our Car Dealership, where our passion for quality vehicles meets your driving dreams. With a commitment to excellence, we take pride in offering a curated selection of top-notch cars, ensuring every customer drives away with confidence and satisfaction.</p>
+            </div>
+        </div>
+        <div class="mid">
+            <h3>Contact Us</h3>
+            <p>Email: cardealership@gmail.com</p>
+            <p>Phone: 0917 111 1111</p>
+            <p>De La Salle, Taft Avenue, Manila</p>
+        </div>
+        <div class="right">
+            <h3>Follow our Socials</h3>
+                <p>Facebook</p>
+                <p>Instagram</p>
+                <p>Twitter</p>
+        </div>
+    </footer>
     </body>
+    
 </html>
