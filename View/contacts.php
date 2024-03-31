@@ -5,7 +5,7 @@ include '../Controller/connect.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inventory</title>
+    <title>Inquiries</title>
     <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
     <link rel="stylesheet" href="../Public/style/dash.css">
 </head>
@@ -33,39 +33,39 @@ include '../Controller/connect.php';
             <h1> Admin Dashboard </h1>
         </nav>
     </header>
-        <h1 class="dashboard"> Inventory </h1>
+        <h1 class="dashboard"> Inquiries </h1>
         <div class="table">
     <table>
         <tr>
-            <th>Car Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            
         </tr>
         <?php
-        // Assuming $conn is your database connection
-        $sql = "SELECT * FROM cars";
+
+        $sql = "SELECT * FROM inquiries";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Output data of each row
+
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["carName"] . "</td>";
-                echo "<td>" . $row["carPrice"] . "</td>";
-                echo "<td>" . $row["carDescription"] . "</td>";
+                echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . $row["message"] . "</td>";
                 echo "<td>";
-                echo "<a href='update_car.php?id=" . $row["id"] . "'>Update</a> | ";
-                echo "<a href='delete_car.php?id=" . $row["id"] . "'>Delete</a>";
+                echo "<a href='update_contacts.php?id=" . $row["id"] . "'>Update</a> | ";
+                echo "<a href='delete_contacts.php?id=" . $row["id"] . "'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='4'>No cars found.</td></tr>";
+            echo "<tr><td colspan='4'>No Inquiries found.</td></tr>";
         }
         ?>
     </table>
-    <a href="add_car.php" class="add-button">Add Car</a>
+    <a href="add_contacts.php" class="add-button">Add Inquiries</a>
 </div>
 
         <footer>

@@ -117,4 +117,20 @@ footer {
     padding: 50px;
     margin-left: 100px;
 }
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
  

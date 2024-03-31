@@ -76,7 +76,7 @@ include '../Controller/connect.php';
                 <img src="../Public/img/car5.png" style="display: flex; justify-content: center;">
                 <strong style="font-size: 24px; font-weight: 700;">Lamborghini Urus</strong>
                 <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;"><a href="carView.php?id=1">More</a></button>
+                <button style="height: 30px; width: 75px;"><a href="carView.php?id=0">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car1.png" style="display: flex; justify-content: center;">

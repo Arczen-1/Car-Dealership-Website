@@ -3,19 +3,29 @@ include '../Controller/connect.php';
 
 $query = "SELECT COUNT(*) AS total FROM cars";
 $query_acc = "SELECT COUNT(*) AS total_accs FROM tblaccount";
+$query_sales = "SELECT COUNT(*) AS total_sales FROM sales";
+$query_contacts = "SELECT COUNT(*) AS total_contacts FROM inquiries";
 
 $result = mysqli_query($conn, $query);
 $result2 = mysqli_query($conn, $query_acc);
+$result3 = mysqli_query($conn, $query_sales);
+$result4 = mysqli_query($conn, $query_contacts);
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);
     $row_1 = mysqli_fetch_assoc($result2);
+    $row_2 = mysqli_fetch_assoc($result3);
+    $row_3 = mysqli_fetch_assoc($result4);
     $total = $row['total'];
     $total_accs = $row_1['total_accs'];
+    $total_sales = $row_2['total_sales'];
+    $total_contacts = $row_3['total_contacts'];
 } else {
 
     $total = "Error: " . mysqli_error($conn);
     $total_accs = "Error: " . mysqli_error($conn);
+    $total_sales = "Error: " . mysqli_error($conn);
+    $total_contacts = "Error: " . mysqli_error($conn);
 }
 
 // Close the database connection
@@ -58,17 +68,17 @@ mysqli_close($conn);
           <button onclick="location.href='inventory.php'"> INVENTORY 
             <div> <?php echo 'Total: ' .$total; ?> </div>
           </button>
-          <button onclick="location.href='inventory.php'"> USERS 
+          <button onclick="location.href='accounts.php'"> USERS 
           <div> <?php echo 'Total: ' .$total_accs; ?> </div>
           </button>
-          <button onclick="location.href='inventory.php'"> SALES 
-          <div> Total: 0 </div>
+          <button onclick="location.href='sales.php'"> SALES 
+          <div> <?php echo 'Total: ' .$total_sales; ?> </div>
           </button>
-          <button onclick="location.href='inventory.php'"> RESERVATIONS 
-          <div> Total: 0 </div>
+          <button onclick="location.href='contacts.php'"> RESERVATIONS 
+          <div>  <?php echo 'Total: ' .$total_contacts; ?></div>
           </button>
-          <button onclick="location.href='inventory.php'"> INQUIRIES 
-          <div> Total: 0 </div>
+          <button onclick="location.href='contacts.php'"> INQUIRIES 
+          <div> <?php echo 'Total: ' .$total_contacts; ?> </div>
           </button>
         </div>
 

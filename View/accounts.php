@@ -33,39 +33,36 @@ include '../Controller/connect.php';
             <h1> Admin Dashboard </h1>
         </nav>
     </header>
-        <h1 class="dashboard"> Inventory </h1>
+        <h1 class="dashboard"> Users </h1>
         <div class="table">
     <table>
         <tr>
-            <th>Car Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th>Email</th>
+            <th>Password</th>
         </tr>
         <?php
-        // Assuming $conn is your database connection
-        $sql = "SELECT * FROM cars";
+
+        $sql = "SELECT * FROM tblaccount";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Output data of each row
+
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["carName"] . "</td>";
-                echo "<td>" . $row["carPrice"] . "</td>";
-                echo "<td>" . $row["carDescription"] . "</td>";
+                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . $row["password"] . "</td>";
                 echo "<td>";
-                echo "<a href='update_car.php?id=" . $row["id"] . "'>Update</a> | ";
-                echo "<a href='delete_car.php?id=" . $row["id"] . "'>Delete</a>";
+                echo "<a href='update_acc.php?id=" . $row["id"] . "'>Update</a> | ";
+                echo "<a href='delete_acc.php?id=" . $row["id"] . "'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='4'>No cars found.</td></tr>";
+            echo "<tr><td colspan='4'>No accounts found.</td></tr>";
         }
         ?>
     </table>
-    <a href="add_car.php" class="add-button">Add Car</a>
+    <a href="add_acc.php" class="add-button">Add Account</a>
 </div>
 
         <footer>
