@@ -49,16 +49,19 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <div class="Button">
-                <button id="book">Book Now</button>
+            <button onclick="location.href='book.php'" id="book">Book Now</button>   
             </div>
         </nav>
         <div class="spacer v40"></div>
@@ -78,7 +81,7 @@ include '../Controller/connect.php';
             <div class="carSpecsContainer">
                 <div class="detailsAndButton">
                     <h1>Car Details</h1>
-                    <div><button class="bookButton">Book Now</button></div>
+                    <div><button class="bookButton" onclick="location.href='checkout.php?id=<?php echo $car_id; ?>'" >Book Now</button></div>
                 </div>
                 <div class="specs">
                     <div class="spec">
@@ -173,6 +176,8 @@ include '../Controller/connect.php';
                 </div>
             </div>
         </div>
+        <div class="spacer v80">
+        </div>
         <footer>
     <div class="footContent">
         <div class="left">
@@ -202,6 +207,7 @@ include '../Controller/connect.php';
                 <p>Twitter</p>
         </div>
     </footer>
+
     </body>
     
 </html>

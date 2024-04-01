@@ -1,6 +1,30 @@
 <?php
 include '../Controller/connect.php';
+
+if(isset($_POST["generate_xml"])) {
+    $sql = "SELECT * FROM sales";
+    $result = $conn->query($sql);
+
+    $xml = new SimpleXMLElement('<cars></cars>');
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $car = $xml->addChild('car');
+            $car->addChild('name', $row["car"]);
+            $car->addChild('price', $row["price"]);
+            $car->addChild('salesPerson', $row["salesPerson"]);
+            $car->addChild('soldTo', $row["soldTo"]);
+        }
+    }
+
+    header('Content-Type: application/xml');
+    header('Content-Disposition: attachment; filename="sales_data.xml"');
+
+    echo $xml->asXML();
+    exit(); 
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +46,16 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <h1> Admin Dashboard </h1>
         </nav>
@@ -41,6 +68,7 @@ include '../Controller/connect.php';
             <th>Price</th>
             <th>Sales Person</th>
             <th>Sold To</th>
+            <th>Actions</th>
         </tr>
         <?php
 
@@ -66,8 +94,23 @@ include '../Controller/connect.php';
         }
         ?>
     </table>
-    <a href="add_sale.php" class="add-button">Add Sales</a>
+    <br>
+    <div class="last-buttons">
+        <div class="add-butt">
+        <a href="add_sale.php" class="add-button">Add Sales</a>
+        </div>
+        <br>
+        <div class="gen-butt">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <button type="submit" name="generate_xml">XML</button>
+        </form>
+        </div>
+    </div>
+
+
 </div>
+<div class="spacer v250">
+                </div>
 
         <footer>
     <div class="footContent">
@@ -100,4 +143,5 @@ include '../Controller/connect.php';
     </footer>
         
 </body>
-        
+</html>
+  

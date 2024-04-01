@@ -22,13 +22,16 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <h1> Admin Dashboard </h1>
         </nav>
@@ -39,6 +42,8 @@ include '../Controller/connect.php';
         <tr>
             <th>Email</th>
             <th>Password</th>
+            <th>Role</th>
+            <th>Actions</th>
         </tr>
         <?php
 
@@ -51,6 +56,7 @@ include '../Controller/connect.php';
                 echo "<tr>";
                 echo "<td>" . $row["email"] . "</td>";
                 echo "<td>" . $row["password"] . "</td>";
+                echo "<td>" . $row["role"] . "</td>";
                 echo "<td>";
                 echo "<a href='update_acc.php?id=" . $row["id"] . "'>Update</a> | ";
                 echo "<a href='delete_acc.php?id=" . $row["id"] . "'>Delete</a>";
@@ -62,8 +68,14 @@ include '../Controller/connect.php';
         }
         ?>
     </table>
+    <br>
+    <div class="add-butt">
     <a href="add_acc.php" class="add-button">Add Account</a>
+    </div>
 </div>
+
+<div class="spacer v250">
+                </div>
 
         <footer>
     <div class="footContent">

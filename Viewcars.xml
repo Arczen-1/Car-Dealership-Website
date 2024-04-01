@@ -1,0 +1,20 @@
+<cars>
+    <car>
+        <name>Toyota Camry</name>
+        <price>25000</price>
+        <salesPerson>John Doe</salesPerson>
+        <soldTo>Michael Johnson</soldTo>
+    </car>
+    <car>
+        <name>Honda Civic</name>
+        <price>22000</price>
+        <salesPerson>Sarah Smith</salesPerson>
+        <soldTo>Emily Brown</soldTo>
+    </car>
+    <car>
+        <name>Ford Mustang</name>
+        <price>35000</price>
+        <salesPerson>Robert Williams</salesPerson>
+        <soldTo>David Taylor</soldTo>
+    </car>
+</cars>

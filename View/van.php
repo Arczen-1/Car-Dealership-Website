@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Car Dealership</title>
-    <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
-    <link rel="stylesheet" href="../Public/style/contact.css">
-        
-</head>
-<body>
-    <header>
+<?php
+include '../Controller/connect.php';
+?>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Models</title>
+        <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
+        <link href="../Public/style/models.css" rel="stylesheet" />
+    </head>
+    <body>
         <nav class="navbar">
             <div class="logo">
                 <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
@@ -34,65 +34,28 @@
             <button onclick="location.href='book.php'" id="book">Book Now</button>   
             </div>
         </nav>
-    </header>
-
-    <div class="wrap">
-        
-        <h1>Contact Us</h1>
-
-        
-        <?php
-
-        $conn = mysqli_connect("localhost", "root", "") or die ("Unable to connect". mysqli_error());
-        mysqli_select_db($conn, "dbcardealership");
-        
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            $inquiryQuery = mysqli_query($conn, "SELECT * FROM inquiries"); 
-            while($inquiryResult = mysqli_fetch_assoc($inquiryQuery)){
-                $id = $inquiryResult['id'];
-            }
-
-            $id++;
-
-            $name = $_POST["name"];
-            $email = $_POST["email"];
-            $message = $_POST["message"];
-
-            $insert = "INSERT INTO inquiries (id, name, email, message) VALUES ('$id', '$name', '$email', '$message')";
-            mysqli_query($conn, $insert);
-
-            echo "<div class='box'><p>Thank you, $name, for contacting us!</p></div>";
-        }
-        ?>
-
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" style="margin: auto; text-align: center; ">
-                <div class="box">
-                    
-                    <div class=labels><label for="name">Name:</label></div>
-                    <input type="text" id="name" name="name" required><br>
-                    
-                </div>
-
-                <div class="box">
-                    <div class="labels"><label for="email">Email:</label></div>
-                    <input type="email" id="email" name="email" required><br>
-                </div>
-
-            <div class="box">
-                <div id="messageBox">
-                    <div class="labels"><label for="message">Message:</label></div>
-                    <textarea id="message" name="message" rows="4" required></textarea><br>
+        <nav class="navbar">
+            <div class="spacer v40"></div>
+            <ul class="nav-links">
+                <li><a href="hatchback.php">HatchBacks & Sedans</a></li>
+                <li><a href="suv.php">Crossovers & SUVs</a></li>
+                <li><a href="mpv.php">MPVs</a></li>
+                <li><a href="van.php">Vans & Pickups</a></li>
+                <li><a href="elec.php">Electrified</a></li>
+            </ul>
+            <div class="spacer v40"></div>
+        </nav>
+        <div class="spacer v40"></div>
+        <div class="wrap">
+            <div class="modelsContainer">
+                <div class="Models">
+                   <h1> No Stocks </h1>
                 </div>
             </div>
-
-            <div id="submit"><button type="submit">Submit</button></div>
-        </form>
-    </div>
-
-    <footer>
+        </div>
+        <div class="spacer v80">
+        </div>
+        <footer>
     <div class="footContent">
         <div class="left">
             <div class="row">
@@ -122,4 +85,5 @@
         </div>
     </footer>
     </body>
+
 </html>

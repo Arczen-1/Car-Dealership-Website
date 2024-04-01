@@ -13,7 +13,9 @@
         $conn = mysqli_connect("localhost", "root", "") or die ("Unable to connect". mysqli_error());
         mysqli_select_db($conn, "dbcardealership");
 
-        $carQuery = mysqli_query($conn, "SELECT * FROM cars WHERE id = '1'"); //must change id
+        if(isset($_GET['id'])) {
+            $car_id = $_GET['id'];
+        $carQuery = mysqli_query($conn, "SELECT * FROM cars WHERE id = '$car_id'"); //must change id
         while($carResult = mysqli_fetch_assoc($carQuery)){
             $carName = $carResult['carName'];
             $carPrice = $carResult['carPrice'];
@@ -21,6 +23,7 @@
 
         $total = preg_replace("/[^0-9]/", '', $carPrice); 
         $total+=100;
+        }
         ?>
         <nav class="navbar">
             <div class="logo">
@@ -31,7 +34,17 @@
                 <li><a href="models.php">Models</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
-                <li><a href="signup.php">Login</a></li>
+                <?php
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
         </nav>
 

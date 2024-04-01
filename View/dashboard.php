@@ -52,13 +52,16 @@ mysqli_close($conn);
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <h1> Admin Dashboard </h1>
         </nav>
@@ -74,13 +77,16 @@ mysqli_close($conn);
           <button onclick="location.href='sales.php'"> SALES 
           <div> <?php echo 'Total: ' .$total_sales; ?> </div>
           </button>
-          <button onclick="location.href='contacts.php'"> RESERVATIONS 
+          <button onclick="location.href='reservations.php'"> RESERVATIONS 
           <div>  <?php echo 'Total: ' .$total_contacts; ?></div>
           </button>
           <button onclick="location.href='contacts.php'"> INQUIRIES 
           <div> <?php echo 'Total: ' .$total_contacts; ?> </div>
           </button>
         </div>
+
+        <div class="spacer v250">
+                </div>
 
         <footer>
     <div class="footContent">

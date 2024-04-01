@@ -1,15 +1,18 @@
+<?php
+include '../Controller/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Dealership</title>
+    <title>Bookings</title>
     <link rel="icon" type="image/png" href="../Public/img/Logo.webp">
-    <link rel="stylesheet" href="../Public/style/contact.css">
-        
+    <link rel="stylesheet" href="../Public/style/dash.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
+    
             <div class="logo">
                 <img src="../Public/img/Logo.webp" alt="Car Dealership Logo">
             </div>
@@ -30,69 +33,56 @@
                     }
                  ?>
             </ul>
-            <div class="Button">
-            <button onclick="location.href='book.php'" id="book">Book Now</button>   
-            </div>
+            <h1> Admin Dashboard </h1>
         </nav>
     </header>
-
-    <div class="wrap">
-        
-        <h1>Contact Us</h1>
-
-        
+        <h1 class="dashboard"> Bookings Record </h1>
+        <div class="table">
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Email</th>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+            
+        </tr>
         <?php
 
-        $conn = mysqli_connect("localhost", "root", "") or die ("Unable to connect". mysqli_error());
-        mysqli_select_db($conn, "dbcardealership");
-        
+        $sql = "SELECT * FROM appointments";
+        $result = $conn->query($sql);
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($result->num_rows > 0) {
 
-            $inquiryQuery = mysqli_query($conn, "SELECT * FROM inquiries"); 
-            while($inquiryResult = mysqli_fetch_assoc($inquiryQuery)){
-                $id = $inquiryResult['id'];
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["date"] . "</td>";
+                echo "<td>" . $row["time"] . "</td>";
+                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . $row["title"] . "</td>";
+                echo "<td>" . $row["firstName"] . "</td>";
+                echo "<td>" . $row["lastName"] . "</td>";
+                echo "<td>";
+                echo "<a href='update_res.php?id=" . $row["id"] . "'>Update</a> | ";
+                echo "<a href='delete_res.php?id=" . $row["id"] . "'>Delete</a>";
+                echo "</td>";
+                echo "</tr>";
             }
-
-            $id++;
-
-            $name = $_POST["name"];
-            $email = $_POST["email"];
-            $message = $_POST["message"];
-
-            $insert = "INSERT INTO inquiries (id, name, email, message) VALUES ('$id', '$name', '$email', '$message')";
-            mysqli_query($conn, $insert);
-
-            echo "<div class='box'><p>Thank you, $name, for contacting us!</p></div>";
+        } else {
+            echo "<tr><td colspan='4'>No Inquiries found.</td></tr>";
         }
         ?>
-
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" style="margin: auto; text-align: center; ">
-                <div class="box">
-                    
-                    <div class=labels><label for="name">Name:</label></div>
-                    <input type="text" id="name" name="name" required><br>
-                    
-                </div>
-
-                <div class="box">
-                    <div class="labels"><label for="email">Email:</label></div>
-                    <input type="email" id="email" name="email" required><br>
-                </div>
-
-            <div class="box">
-                <div id="messageBox">
-                    <div class="labels"><label for="message">Message:</label></div>
-                    <textarea id="message" name="message" rows="4" required></textarea><br>
-                </div>
-            </div>
-
-            <div id="submit"><button type="submit">Submit</button></div>
-        </form>
+    </table>
+    <br>
+    <div class="add-butt">
+    <a href="add_res.php" class="add-button">Add Record</a>
     </div>
-
-    <footer>
+</div>
+<div class="spacer v250">
+                </div>
+        <footer>
     <div class="footContent">
         <div class="left">
             <div class="row">
@@ -121,5 +111,6 @@
                 <p>Twitter</p>
         </div>
     </footer>
-    </body>
-</html>
+        
+</body>
+        

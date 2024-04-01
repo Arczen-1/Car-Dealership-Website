@@ -69,7 +69,6 @@ body, h1, ul, li, a {
 }
 
 footer {
-    position: fixed;
     background-color: #333;
     color: #fff;
     padding: 20px;
@@ -132,5 +131,56 @@ th, td {
 th {
     background-color: black;
     color: white;
+}
+.add-butt{
+    background: black;
+    width: 100px;
+    margin-top: 10px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+.add-button{
+    color: white;
+}
+
+.gen-butt{
+    width: 100px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.gen-butt button{
+    background: black;
+    color: white;
+    width: 100px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: caros light;
+}
+
+.last-buttons{
+    display: flex;
+    width: 250px;
+    margin: auto;
+}
+td img{
+    height: 50px;
+}
+.spacer.v80 {
+    height: 80px;
+}
+.spacer.v250 {
+    height: 250px;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
  

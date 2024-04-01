@@ -22,25 +22,21 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <div class="Button">
-                <button id="book">Book Now</button>
-                
+                <button onclick="location.href='book.php'" id="book">Book Now</button>   
             </div>
-            <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('book').addEventListener('click', function() {
-            window.location.href = 'checkout.php';
-        });
-    });
-</script>
+            
         </nav>
         <div class="header-content">
 
@@ -51,12 +47,12 @@ include '../Controller/connect.php';
                         <input class="search-input" id="brand" name="brand" placeholder="Type the brand here..."> </input>
                     </div>
                     <div class="input-group">
-                        <span class="input-title">Monthly Payment</span>
-                        <input class="search-input" id="price" placeholder="Add an amount here..."> </input>
+                        <span class="input-title">Price</span>
+                        <input class="search-input" id="price" name="price" placeholder="Add an amount here..."> </input>
                     </div>
                     <div class="input-group">
                         <span class="input-title">Color</span>
-                        <input class="search-input" id="color" placeholder="Type the color here..."> </input>
+                        <input class="search-input" id="color" name="color"placeholder="Type the color here..."> </input>
                     </div>
                     <button id="search" name="search"> Search </button>
                 </div>
@@ -75,26 +71,26 @@ include '../Controller/connect.php';
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car5.png" style="display: flex; justify-content: center;">
                 <strong style="font-size: 24px; font-weight: 700;">Lamborghini Urus</strong>
-                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;"><a href="carView.php?id=0">More</a></button>
+                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">$229,268</strong>
+                <button style="height: 30px; width: 75px;"><a href="carView.php?id=7">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car1.png" style="display: flex; justify-content: center;">
-                <strong style="font-size: 24px; font-weight: 700;">Rolls Royce</strong>
-                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;"><a href="carView.php?id=2">More</a></button>
+                <strong style="font-size: 24px; font-weight: 700;">Rolls-Royce Wraith</strong>
+                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">$330,488</strong>
+                <button style="height: 30px; width: 75px;"><a href="carView.php?id=4">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car2.png" style="display: flex; justify-content: center;">
-                <strong style="font-size: 24px; font-weight: 700;">Rolls Royce</strong>
-                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;"><a href="carView.php?id=3">More</a></button>
+                <strong style="font-size: 24px; font-weight: 700;">Rolls-Royce Ghost Black</strong>
+                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">$450,000</strong>
+                <button style="height: 30px; width: 75px;"><a href="carView.php?id=5">More</a></button>
             </div>
             <div class="catalog" style="height: 500px; width: 400px; margin: auto; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
                 <img src="../Public/img/car4.jpeg" style="display: flex; justify-content: center;">
-                <strong style="font-size: 24px; font-weight: 700;">Rolls Royce</strong>
-                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">PHP 200,000/month</strong>
-                <button style="height: 30px; width: 75px;"><a href="carView.php?id=4">More</a></button>
+                <strong style="font-size: 24px; font-weight: 700;">Mercedes-AMG GT 63</strong>
+                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;">$136,050</strong>
+                <button style="height: 30px; width: 75px;"><a href="carView.php?id=6">More</a></button>
             </div>
             
         </div>

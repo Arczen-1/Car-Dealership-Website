@@ -21,23 +21,28 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <div class="Button">
-                <button id="book">Book Now</button>
+            <button onclick="location.href='book.php'" id="book">Book Now</button>   
                 
             </div>
         </nav>
         <?php
         if(isset($_POST['search'])){
             $search = $_POST['brand'];
-            $sql="SELECT * FROM `tblproducts` WHERE car='$search'";
+            $searchP = $_POST['price'];
+            $searchC = $_POST['color'];
+            $sql="SELECT * FROM cars WHERE carName='$search' OR carPrice='$searchP' OR  color='$searchC'";
             $result=mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
@@ -50,13 +55,13 @@ include '../Controller/connect.php';
                         while($row = mysqli_fetch_assoc($result)){
                             ?>
                             <div class="catalog" style="height: 500px; width: 400px; margin-right: 25px; display: flex; align-items: center; flex-direction: column; padding: 10px;">
-                                <img src="../Public/img/<?php echo $row['image_path']; ?>" style="display: flex; justify-content: center;">
-                                <strong style="font-size: 24px; font-weight: 700;"><?php echo $row['car']; ?></strong>
-                                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;"><?php echo 'PHP '.$row['price'].'/month'; ?></strong>
-                                <button style="height: 30px; width: 75px;"><a href="carView.php">More</a></button>
+                                <img src="<?php echo $row['img']; ?>" alt="<?php echo $row['carName']; ?>" style="display: flex; justify-content: center;">
+                                <strong style="font-size: 24px; font-weight: 700;"><?php echo $row['carName']; ?></strong>
+                                <strong style="font-size: 16px; font-weight: 700; padding-bottom: 20px;"><?php echo 'PHP '.$row['carPrice'].'/month'; ?></strong>
+                                <button style="height: 30px; width: 75px;"><a href="carView.php?id=<?php echo $row['id']; ?>">More</a></button>
                             </div>
                             <?php
-                        }
+                    }
                         ?>
                     </div>
                 </div>

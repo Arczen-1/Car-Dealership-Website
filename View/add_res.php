@@ -2,41 +2,23 @@
 include '../Controller/connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $carName = $_POST["carName"];
-    $carPrice = $_POST["carPrice"];
-    $carDescription = $_POST["carDescription"];
 
-    // File upload handling
-    $targetDirectory = "../Public/img/";
-    $fileName = basename($_FILES["carImage"]["name"]);
-    $targetFilePath = $targetDirectory . $fileName;
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+    $date = $_POST["date"];
+    $time = $_POST["time"];
+    $email = $_POST["email"];
+    $title = $_POST["title"];
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
 
-    // Allow certain file formats
-    $allowedFormats = array("jpg", "jpeg", "png", "gif");
-    if (in_array($fileType, $allowedFormats)) {
-        // Move uploaded file to the target directory
-        if (move_uploaded_file($_FILES["carImage"]["tmp_name"], $targetFilePath)) {
-            // Construct the image file path relative to the web root
-            $imagePath = "../Public/img/" . $fileName;
-
-            // Insert car details into the database
-            $sql = "INSERT INTO cars (carName, carPrice, carDescription, img) VALUES (?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sdss', $carName, $carPrice, $carDescription, $imagePath);
-            $stmt->execute();
-            
-            header("Location: inventory.php");
-            exit();
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    } else {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    }
+    $sql = "INSERT INTO appointments (date, time, email, title, firstName, lastName) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ddsssi', $date, $time, $email, $title, $firstName, $lastName, $id);
+    $stmt->execute();
+    
+    header("Location: reservations.php");
+    exit();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,20 +54,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1> Admin Dashboard </h1>
         </nav>
     </header>
-    <h1 class="dashboard">Add Car</h1>
+
+    <h1 class="dashboard">Add Reservation</h1>
     <div class="form-container">
-        <form method="post" enctype="multipart/form-data">
-            <label for="carName">Car Name:</label><br>
-            <input type="text" id="carName" name="carName" required><br>
-            <label for="carPrice">Price:</label><br>
-            <input type="number" id="carPrice" name="carPrice" required><br>
-            <label for="carDescription">Description:</label><br>
-            <textarea id="carDescription" name="carDescription" required></textarea><br><br>
-            <label for="carImage">Car Image:</label><br>
-            <input type="file" id="carImage" name="carImage" accept="image/*" required><br><br>
-            <input type="submit" value="Add Car">
-        </form>
+    <form method="post">
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"><br>
+        <label for="time">Time:</label><br>
+        <input type="text" id="time" name="time"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName"><br>
+        <label for="lastName">Last Name:</label><br>
+        <textarea id="lastName" name="lastName"></textarea><br><br>
+        <input type="submit" value="Update">
+    </form>
     </div>
+
     <footer>
     <div class="footContent">
         <div class="left">

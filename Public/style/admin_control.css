@@ -3,9 +3,10 @@ body, h1, ul, li, a {
     padding: 0;
     text-decoration: none;
     list-style: none;
-    color: #333;
     font-family: caros light;
+    
 }
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -20,6 +21,7 @@ body, h1, ul, li, a {
         padding: 10px 0;
     }
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -28,130 +30,53 @@ body, h1, ul, li, a {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
 .logo img {
     height: 50px;
 }
+
 .nav-links {
     display: flex;
 }
+
 .nav-links li {
     padding: 0 20px;
 }
+
 .nav-links li a {
     font-size: 16px;
     color: #333;
     transition: color 0.3s ease;
 }
+
 .nav-links li a:hover {
     color: #007bff;
 }
-#book{
-    background-color: black;
-    color: white;
-    height: 35px;
-    width: 150%;
-    border-radius: 25px;
-    border: 0px;
-    font-family: caros light;
-}
-#book:hover{
-    background-color: blue;
+
+.control {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+    margin-top: 100px;
 }
 
-.spacer.v20 {
-    height: 20px;
-}
-.spacer.v40 {
-    height: 40px;
-}
-.spacer.v80 {
-    height: 80px;
-}
-h1 {
-    font-size: 40px;
-}
-.wrap {
-    margin: 0 auto;
-    padding: 0;
-    width: 1000px;
-}
-.container {
-    margin: 0 auto;
-    padding: 0;
-    width: 1000px;
-    display: flex;
-    flex-direction: row;
-}
-.car img{
-    height: 250px;
-    margin-left: -130px;
-}
-.carInfo {
-    margin-left: 50px;
-    margin-top: 10px;
-}
-.detailsAndButton {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-.bookButton {
-    background-color: black;
-    color: white;
-    height: 35px;
-    width: 150px;
-    border: 0px;
-    font-family: caros light;
-}
-.carSpecsContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    margin-left: -60px;
-}
-.carDescription {
-    text-align: justify;
-}
-.specs {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-hr {
-    background-color: #333;
-    height: 1px;
-    border: 0;
-    width: 1050px;
-    margin-left: -50px;
-}
-.fullSpecs{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.fullSpecsRowOne{
-    display: flex;
-    flex-direction: column;
-}
-.fullSpecsRowTwo{
-    display: flex;
-    flex-direction: column;
-}
-.row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.control button{
+    width: 200px;
+    height: 100px;
+    
 }
 
 footer {
+    position: fixed;
     background-color: #333;
     color: #fff;
     padding: 20px;
     text-align: center;
     width: 100%;
-    margin-top: auto;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    bottom: 0;
 }
 
 .footContent{
@@ -188,8 +113,68 @@ footer {
     margin-top: 60px;
     margin-right: 300px;
 }
+.dashboard{
+    padding: 50px;
+}
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+.add-butt{
+    background: black;
+    width: 100px;
+    margin-top: 10px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+.add-button{
+    color: white;
+}
+
+.gen-butt{
+    width: 100px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.gen-butt button{
+    background: black;
+    color: white;
+    width: 100px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: caros light;
+}
+
+.last-buttons{
+    display: flex;
+    width: 250px;
+    margin: auto;
+}
+td img{
+    height: 50px;
+}
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+ 

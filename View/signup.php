@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     if (password_verify($password, $row['password'])) {
                         session_start();
                         $_SESSION['email'] = $email;
+                        $_SESSION['role'] = $row['role'];
                         echo '<script> alert("Login successful. Welcome, ' . $email . '!"); </script>';
                         header("Location: index.php");
                         exit();

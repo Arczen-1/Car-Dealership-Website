@@ -137,4 +137,8 @@ footer {
     margin-top: 60px;
     margin-right: 300px;
 }
- 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

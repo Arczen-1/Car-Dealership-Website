@@ -1,5 +1,8 @@
 <?php
 include '../Controller/connect.php';
+$sql = "SELECT * FROM cars"; 
+$result = mysqli_query($conn, $sql);
+$cars = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <html>
     <head>
@@ -19,26 +22,29 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <div class="Button">
-                <button id="book">Book Now</button>
+            <button onclick="location.href='book.php'" id="book">Book Now</button>   
             </div>
         </nav>
         <nav class="navbar">
             <div class="spacer v40"></div>
             <ul class="nav-links">
-                <li><a href="">HatchBacks & Sedans</a></li>
-                <li><a href="">Crossovers & SUVs</a></li>
-                <li><a href="">MPVs</a></li>
-                <li><a href="">Vans & Pickups</a></li>
-                <li><a href="">Electrified</a></li>
+                <li><a href="hatchback.php">HatchBacks & Sedans</a></li>
+                <li><a href="suv.php">Crossovers & SUVs</a></li>
+                <li><a href="mpv.php">MPVs</a></li>
+                <li><a href="van.php">Vans & Pickups</a></li>
+                <li><a href="elec.php">Electrified</a></li>
             </ul>
             <div class="spacer v40"></div>
         </nav>
@@ -46,28 +52,18 @@ include '../Controller/connect.php';
         <div class="wrap">
             <div class="modelsContainer">
                 <div class="Models">
+                <?php foreach ($cars as $car): ?>
                     <div class="imgAndCarName">
-                        <img src="../Public/img/car1.png">
-                        <p>Rolls Royce</p>
+                        <a href="carView.php?id=<?php echo $car['id']; ?>">
+                        <img src="<?php echo $car['img']; ?>" alt="<?php echo $car['carName']; ?>">
+                        </a>
+                        <p><?php echo $car['carName']; ?></p>
                     </div>
-                    <div class="imgAndCarName">
-                        <img src="../Public/img/car2.png"style="height: 95px">
-                        <p>Rolls Royce</p>
-                    </div>
-                    <div class="imgAndCarName">
-                        <img src="../Public/img/car3.jpg"style="height: 150px">
-                        <p>Rolls Royce</p>
-                    </div>
-                    <div class="imgAndCarName">
-                        <img src="../Public/img/car4.jpeg">
-                        <p>Mercedes Benz</p>
-                    </div>
-                    <div class="imgAndCarName">
-                        <img src="../Public/img/car5.png">
-                        <p>Lamborghini</p>
-                    </div>
+                <?php endforeach; ?>
                 </div>
             </div>
+        </div>
+        <div class="spacer v80">
         </div>
         <footer>
     <div class="footContent">

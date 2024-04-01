@@ -22,14 +22,18 @@ include '../Controller/connect.php';
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="account.php">Account</a></li>
                 <?php
-                session_start();
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
+            
             <h1> Admin Dashboard </h1>
         </nav>
     </header>
@@ -37,20 +41,22 @@ include '../Controller/connect.php';
         <div class="table">
     <table>
         <tr>
+            <th>Image</th>
             <th>Car Name</th>
             <th>Price</th>
             <th>Description</th>
             <th>Actions</th>
         </tr>
         <?php
-        // Assuming $conn is your database connection
+
         $sql = "SELECT * FROM cars";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Output data of each row
+
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
+                echo "<td><img src='" . $row["img"] . "'></td>";
                 echo "<td>" . $row["carName"] . "</td>";
                 echo "<td>" . $row["carPrice"] . "</td>";
                 echo "<td>" . $row["carDescription"] . "</td>";
@@ -65,9 +71,13 @@ include '../Controller/connect.php';
         }
         ?>
     </table>
+    <br>
+    <div class="add-butt">
     <a href="add_car.php" class="add-button">Add Car</a>
+    </div>
 </div>
-
+<div class="spacer v80">
+    </div>
         <footer>
     <div class="footContent">
         <div class="left">

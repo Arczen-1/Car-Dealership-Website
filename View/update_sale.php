@@ -1,48 +1,47 @@
 <?php
 include '../Controller/connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $carName = $_POST["carName"];
-    $carPrice = $_POST["carPrice"];
-    $carDescription = $_POST["carDescription"];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-    // File upload handling
-    $targetDirectory = "../Public/img/";
-    $fileName = basename($_FILES["carImage"]["name"]);
-    $targetFilePath = $targetDirectory . $fileName;
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+    $sql = "SELECT * FROM sales WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Allow certain file formats
-    $allowedFormats = array("jpg", "jpeg", "png", "gif");
-    if (in_array($fileType, $allowedFormats)) {
-        // Move uploaded file to the target directory
-        if (move_uploaded_file($_FILES["carImage"]["tmp_name"], $targetFilePath)) {
-            // Construct the image file path relative to the web root
-            $imagePath = "../Public/img/" . $fileName;
+    if ($result->num_rows == 1) {
+        $car = $result->fetch_assoc();
 
-            // Insert car details into the database
-            $sql = "INSERT INTO cars (carName, carPrice, carDescription, img) VALUES (?, ?, ?, ?)";
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $car = $_POST["car"];
+            $price = $_POST["price"];
+            $salesPerson = $_POST["salesPerson"];
+            $soldTo = $_POST["soldTo"];
+
+            $sql = "UPDATE sales SET car = ?, price = ?, salesPerson = ?, soldTo = ? WHERE id = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sdss', $carName, $carPrice, $carDescription, $imagePath);
+            $stmt->bind_param('sdssi', $car, $price, $salesPerson, $soldTo, $id);
             $stmt->execute();
-            
-            header("Location: inventory.php");
+
+            header("Location: sales.php");
             exit();
-        } else {
-            echo "Sorry, there was an error uploading your file.";
         }
     } else {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        echo "Sale not found.";
     }
+} else {
+    echo "ID not provided.";
 }
-?>
 
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Car</title>
+    <title>Update Sales</title>
     <link rel="stylesheet" href="../Public/style/admin_control.css">
 </head>
 <body style="margin: auto; text-align: center">
@@ -72,20 +71,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1> Admin Dashboard </h1>
         </nav>
     </header>
-    <h1 class="dashboard">Add Car</h1>
-    <div class="form-container">
-        <form method="post" enctype="multipart/form-data">
-            <label for="carName">Car Name:</label><br>
-            <input type="text" id="carName" name="carName" required><br>
-            <label for="carPrice">Price:</label><br>
-            <input type="number" id="carPrice" name="carPrice" required><br>
-            <label for="carDescription">Description:</label><br>
-            <textarea id="carDescription" name="carDescription" required></textarea><br><br>
-            <label for="carImage">Car Image:</label><br>
-            <input type="file" id="carImage" name="carImage" accept="image/*" required><br><br>
-            <input type="submit" value="Add Car">
-        </form>
-    </div>
+    <br>
+    <br>
+    <h1>Update Sales</h1>
+    <br>
+    <form method="post">
+        <label for="car">Car:</label><br>
+        <input type="text" id="car" name="car" value="<?php echo $car['car']; ?>"><br>
+        <label for="price">Email:</label><br>
+        <input type="number" id="price" name="price" value="<?php echo $car['price']; ?>"><br>
+        <label for="salesPerson">Sales Person:</label><br>
+        <textarea id="salesPerson" name="salesPerson"><?php echo $car['salesPerson']; ?></textarea><br><br>
+        <label for="soldTo">Sold To:</label><br>
+        <textarea id="soldTo" name="soldTo"><?php echo $car['soldTo']; ?></textarea><br><br>
+        <input type="submit" value="Update">
+    </form>
     <footer>
     <div class="footContent">
         <div class="left">

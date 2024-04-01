@@ -1,6 +1,6 @@
 <?php
 include '../Controller/connect.php';
-session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +22,16 @@ session_start();
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="#Account">Account</a></li>
                 <?php
-                if (isset($_SESSION['email'])) {
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                } else {
-                    echo '<li><a href="signup.php">Login</a></li>';
-                }
-                ?>
+                    session_start();
+                    if (isset($_SESSION['email'])) {
+                        if ($_SESSION['role'] == 'admin') {
+                            echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                        }
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="signup.php">Login</a></li>';
+                    }
+                 ?>
             </ul>
             <div class="Button">
                 <button id="book">Book Now</button>
@@ -36,19 +40,97 @@ session_start();
         </nav>
     </header>
 
-    <h1 class="account" >Account Settings</h1>
-    <form class="formacc" method="post">
-        <label for="new_email">New Email:</label>
-        <input type="email" id="new_email" name="new_email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" required>
+    <div class="spacer v40"></div>
+    <div class="wrap">
+        <h1 class="account" >Account Settings</h1>
+        
+        <div class="rows">
+            <div class="accountInfo">
+                <div class="text">
+                    <h1>Profile</h1>
+                    <h2>email: <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?></h2>
+                </div>
+            </div>
+            <div class="changeInfo">
+                <div class="contents">
+                    <h2>Change Account Information</h2>
+                    <form class="formacc" method="post">
+                        <div class="row">
+                        <label for="new_email">New Email:</label>
+                        <input type="email" id="new_email" name="new_email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" required>
 
-        <br>
-        <br>
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-        <br>
-        <button type="submit" name="update">Save Changes</button>
-    </form>
-    <footer>
+                        <br>
+                        <br>
+                        <label id="pass" for="new_password">New Password:</label>
+                        <input type="password" id="new_password" name="new_password" required>
+                        <br>
+                        </div>
+                        <button id="save" type="submit" name="update">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="spacer v40"></div>
+        <div class="billing-address">
+            <?php 
+                $userEmail = $_SESSION['email'];
+
+                $checkIfExists = "SELECT * FROM appointments WHERE email = '$userEmail'";
+                $result = mysqli_query($conn, $checkIfExists);
+
+                if(mysqli_num_rows($result) == 0) {
+                    echo "<h2>No Appointments</h2>";
+                } else {
+                    echo "<h2>Appointments</h2>";
+                    echo "<table>";
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th>Appointment ID</th>";
+                    echo "<th>Date</th>";
+                    echo "<th>Time</th>";
+                    echo "<th>Actions</th>"; 
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+
+                    while($appointmentsResult = mysqli_fetch_assoc($result)) {
+                        $id = $appointmentsResult['id'];
+                        $date = $appointmentsResult['date'];
+                        $time = $appointmentsResult['time'];
+                        echo "<tr>";
+                        echo "<td>$id</td>";
+                        echo "<td>$date</td>";
+                        echo "<td>$time</td>";
+                        echo "<td>";
+                        echo "<form method='POST'>";
+                        echo "<input type='hidden' name='appointment_id' value='$id'>";
+                        echo "<button id='submits' type='submit' name='delete' value='Delete'>Delete</button>";
+                        echo "</form>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+
+                    echo "</tbody>";
+                    echo "</table>";
+                }
+
+                if(isset($_POST['delete'])) {
+                    $appointmentId = $_POST['appointment_id'];
+
+                    $deleteQuery = "DELETE FROM appointments WHERE id = '$appointmentId'";
+                    $deleteResult = mysqli_query($conn, $deleteQuery);
+                    if($deleteResult) {
+                        echo "<script>alert('Appointment deleted successfully.');</script>";
+                    } else {
+                        echo "<script>alert('Failed to delete appointment.');</script>";
+                    }
+                }
+            ?>
+        </div>
+    </div>
+</body>
+
+<footer>
     <div class="footContent">
         <div class="left">
             <div class="row">
@@ -76,8 +158,8 @@ session_start();
                 <p>Instagram</p>
                 <p>Twitter</p>
         </div>
-    </footer>
-</body>
+    </div>
+</footer>
 
 <?php
 
