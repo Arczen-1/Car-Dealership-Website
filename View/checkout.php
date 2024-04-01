@@ -61,12 +61,12 @@
             
         <div class="billing-address">
         <h2>Set Appointment</h2>
-        <form>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="date" >
                 <label for="selectedDate">Appointment Date: </label>
-                <input type="date" id="reservation" name="selectedDate" >
+                <input type="date" id="reservation" name="date" >
                 <label for="selectedTime">Time: </label>
-                <select name="time" id="time" onchange="fetchReservedSeats()">
+                <select name="time" id="time">
                 <option value="7:00" >7:00</option>
                 <option value="7:30">7:30</option>
                 <option value="8:00">8:00</option>
@@ -91,23 +91,48 @@
                 </select>
             </div>
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
             <label for="confirm_email">Re-enter Email</label>
             <input type="email" id="confirm_email" placeholder="Confirm your email" required>
 
             <label for="title">Title/Salutation</label>
-            <input type="text" id="title" placeholder="Optional">
+            <input type="text" id="title" name="title" placeholder="Optional">
 
             <label for="first_name">First Name</label>
-            <input type="text" id="first_name" placeholder="Enter your first name" required>
+            <input type="text" id="first_name" name="firstName" placeholder="Enter your first name" required>
 
             <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" placeholder="Enter your last name" required>
+            <input type="text" id="last_name" name="lastName" placeholder="Enter your last name" required>
 
-            <input type="submit" value="Submit" class="submit-button">
+            <input type="submit" value="submit" class="submit-button">
         </form>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $conn = mysqli_connect("localhost", "root", "") or die ("Unable to connect". mysqli_error());
+            mysqli_select_db($conn, "dbcardealership");
+
+            $appointmentsQuery = mysqli_query($conn, "SELECT * FROM appointments"); 
+            while($appointmentsResult = mysqli_fetch_assoc($appointmentsQuery)){
+                $id = $appointmentsResult['id'];
+            }
+
+            $id++;
+
+            $date = $_POST["date"];
+            $time = $_POST["time"];
+            $email = $_POST["email"];
+            $title = $_POST["title"];
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+
+            $insert = "INSERT INTO appointments (id, date, time, email, title, firstName, lastName) VALUES ('$id', '$date', '$time', '$email', '$title', '$firstName', '$lastName')";
+            mysqli_query($conn, $insert);
+        }
+        ?>
     </div>
+    </body>
+
     <footer>
     <div class="footContent">
         <div class="left">

@@ -8,6 +8,10 @@
         
 </head>
 <body>
+    <?php
+    $conn = mysqli_connect("localhost", "root", "") or die ("Unable to connect". mysqli_error());
+    mysqli_select_db($conn, "dbcardealership");
+    ?>
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -42,14 +46,21 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+            $inquiryQuery = mysqli_query($conn, "SELECT * FROM inquiries"); 
+            while($inquiryResult = mysqli_fetch_assoc($inquiryQuery)){
+                $id = $inquiryResult['id'];
+            }
+
+            $id++;
+
             $name = $_POST["name"];
             $email = $_POST["email"];
             $message = $_POST["message"];
 
-            echo "<p>Thank you, $name, for contacting us!</p>";
-            echo "<p>Your email: $email</p>";
-            echo "<p>Your message: $message</p>";
+            $insert = "INSERT INTO inquiries (id, name, email, message) VALUES ('$id', '$name', '$email', '$message')";
+            mysqli_query($conn, $insert);
 
+            echo "<div class='box'><p>Thank you, $name, for contacting us!</p></div>";
         }
         ?>
 
