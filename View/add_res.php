@@ -10,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
 
-    $sql = "INSERT INTO appointments (date, time, email, title, firstName, lastName) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO appointments (date, time, email, title, firstName, lastName) VALUES (?, ?, ?, ?, ?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ddsssi', $date, $time, $email, $title, $firstName, $lastName, $id);
+    $stmt->bind_param('sssssi', $date, $time, $email, $title, $firstName, $lastName, $id);
     $stmt->execute();
     
     header("Location: reservations.php");
