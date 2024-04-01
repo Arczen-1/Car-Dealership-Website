@@ -164,16 +164,6 @@ body, h1, ul, li, a {
     display: flex;
     align-items: center;
   }
-
-  .account{
-    padding: 10px;
-    text-align: center;
-  }
-  .formacc{
-    padding: 10px;
-    text-align: center;
-  }
-
   footer {
     background-color: #333;
     color: #fff;
@@ -217,6 +207,154 @@ body, h1, ul, li, a {
 .mid{
     margin-top: 60px;
     margin-right: 300px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.spacer.v20 {
+    height: 20px;
+}
+.spacer.v40 {
+    height: 40px;
+}
+.spacer.v80 {
+    height: 80px;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0;
+    padding: 0;
+    width: 1000px;
+}
+
+.account{
+    padding: 20px;
+    text-align: left;
+    padding-top: 30px;
+    margin-left: -30%;
+  }
+.formacc{
+    padding: 10px;
+    text-align: left;
+}
+.accountInfo{
+    margin-left: 710px;
+    padding-right: 250px;
+    border-color: #333;
+
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+.rows{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.changeInfo{
+    margin-left: 70px;
+    padding-right: 200px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+.text {
+    margin: 30px;
+    width: 300px;
+    margin-top: 23px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+}
+.contents{
+    margin: 30px;
+    width: 300px;
+    justify-content: space-between;
+}
+#save{
+    margin-left: 362px;
+    background: #333;
+    color: white;
+    margin-top: 20px;
+    width: 118px;
+    height: 30px;
+}
+
+.row > input{
+    margin-left: 10px;
+}
+
+#pass{
+    margin-left: 10px;
+}
+.table{
+    align-items: center;
+}
+.billing-address {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-left: 712px;
+    padding-right: 221px;
+}
+
+.billing-address h2 {
+    margin-top: 0;
+    padding-bottom: 10px; /* Add some padding below the header */
+    border-bottom: 1px solid #eee; /* Separator line below the header */
+}
+
+.billing-address form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Spacing between form fields */
+}
+
+.billing-address form label {
+    margin-bottom: 5px; /* Spacing below the label */
+}
+
+.billing-address table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.billing-address th, .billing-address td {
+    text-align: left;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.billing-address th {
+    background-color: #eaeaea;
+}
+
+#submits {
+    background: #333;
+    color: white;
+    width: 95px;
+    height: 27px;
 }
  
 
